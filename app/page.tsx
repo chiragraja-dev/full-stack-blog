@@ -1,6 +1,7 @@
 import DeployButton from "../components/DeployButton";
-import AuthButton from "../components/AuthButton";
+import AuthButton from "../components/MainLayout";
 import { createClient } from "@/utils/supabase/server";
+import Link from "next/link";
 
 
 export default async function Index() {
@@ -20,6 +21,7 @@ export default async function Index() {
   return (
     <div>
       <h1>Hello, this is Home page</h1>
+      <Link className=" bg-sky-400 p-2 rounded-sm" href={"/login"}>Login</Link>
     </div>
   );
 }

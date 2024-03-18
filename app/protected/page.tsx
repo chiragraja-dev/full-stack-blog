@@ -1,12 +1,12 @@
 import DeployButton from "@/components/DeployButton";
-import AuthButton from "@/components/AuthButton";
+import AuthButton from "@/components/MainLayout";
 import { createClient } from "@/utils/supabase/server";
 
 import { redirect } from "next/navigation";
 
 export default async function ProtectedPage() {
   const supabase = createClient();
-
+  console.log("ProtectedPage function is executing");
   const {
     data: { user },
   } = await supabase.auth.getUser();
@@ -15,7 +15,8 @@ export default async function ProtectedPage() {
     return redirect("/login");
   }
 
+  console.log("hello")
   return (
-    <div></div>
+    <div>my name is </div>
   );
 }
