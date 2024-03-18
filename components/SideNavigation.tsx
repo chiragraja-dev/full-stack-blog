@@ -1,4 +1,7 @@
 import Link from "next/link";
+import { RocketIcon, ReaderIcon } from '@radix-ui/react-icons'
+
+
 
 export default function SideNavigation() {
     return <aside className="w-[300px] border-r border-gray-300 h-screen" >
@@ -7,12 +10,14 @@ export default function SideNavigation() {
         <div className="mt-4 p-4">
             <ul>
                 <li>
-                    <Link href={"/admin/projects"} className="block hover:bg-gray-100 rounded-lg px-4 py-3 text-gray-500 hover:text-gray-600">
+                    <Link href={"/admin/projects"} className=" hover:bg-gray-100 rounded-lg px-4 py-3 text-gray-500 hover:text-gray-900 flex gap-2 ">
+                        <RocketIcon className="w-6 h-6" />
                         Projects
                     </Link>
                 </li>
                 <li>
-                    <Link href={"/admin/blog"} className="block hover:bg-gray-100 rounded-lg px-4 py-3 text-gray-400 hover:text-gray-600">
+                    <Link href={"/admin/blog"} className="hover:bg-gray-100 rounded-lg px-4 py-3 text-gray-500 hover:text-gray-900 flex gap-2">
+                        <ReaderIcon className="w-6 h-6" />
                         Blog
                     </Link>
                 </li>
