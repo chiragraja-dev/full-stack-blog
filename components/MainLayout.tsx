@@ -1,24 +1,23 @@
+// "use client"
 import { createClient } from "@/utils/supabase/server";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import SideNavigation from "./SideNavigation";
 import { ReactNode } from "react";
 import { Button } from "@/components/ui/button"
+import { PlusIcon } from "@radix-ui/react-icons";
+import { useRouter } from 'next/router'
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuGroup,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuPortal,
-  DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@/components/ui/avatar"
 
 interface MainLayoutProps {
   children: ReactNode;
@@ -26,7 +25,7 @@ interface MainLayoutProps {
 
 export default async function MainLayout({ children }: MainLayoutProps) {
 
-
+  // const router = useRouter()
   const supabase = createClient();
 
   const {
@@ -35,7 +34,6 @@ export default async function MainLayout({ children }: MainLayoutProps) {
 
   const signOut = async () => {
     "use server";
-
     const supabase = createClient();
     await supabase.auth.signOut();
     return redirect("/login");
@@ -47,6 +45,10 @@ export default async function MainLayout({ children }: MainLayoutProps) {
   }
 
 
+  function RedirectBlog() {
+    return redirect('/blogs/create')
+  }
+
   return (
     <main className="flex">
       <SideNavigation />
@@ -54,18 +56,46 @@ export default async function MainLayout({ children }: MainLayoutProps) {
         <header className="p-4 border-b">
           <div className=" container flex justify-between">
             <div></div>
-            <div>
+            <div className="flex">
               <DropdownMenu >
-                <DropdownMenuTrigger asChild className="mr-10 hover:bg-slate-50">
-                  <Button variant="outline">Open</Button>
+                <DropdownMenuTrigger asChild className="mr-10 hover:bg-slate-800 bg-black text-white">
+                  <Button variant="outline"><PlusIcon className="mr-2" />Create</Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent className="w-36 hover:bg-gray-100 bg-white">
-                  <DropdownMenuItem>
+
+                <DropdownMenuContent className="w-auto flex flex-col divide-y bg-white">
+                  <DropdownMenuItem className="hover:bg-slate-100 py-2 text-center justify-center flex">
+                    Project
+                  </DropdownMenuItem>
+                  <Link href={"/admin/blogs/create"}>
+                    <DropdownMenuItem
+                      className="hover:bg-slate-100 py-2 text-center justify-center flex">
+                      Blog
+                    </DropdownMenuItem>
+                  </Link>
+                </DropdownMenuContent>
+              </DropdownMenu>
+              <DropdownMenu >
+                <DropdownMenuTrigger asChild className="mr-10 hover:bg-slate-800 bg-black text-white">
+                  {/* <Button variant="outline"><PlusIcon className="mr-2" />Create</Button> */}
+                  <Avatar className="w-8 h-8">
+                    <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+                    <AvatarFallback>{user.email && user.email[0]}</AvatarFallback>
+                  </Avatar>
+                </DropdownMenuTrigger>
+
+                <DropdownMenuContent className="w-auto flex flex-col divide-y bg-white">
+                  <DropdownMenuItem className="hover:bg-slate-100 py-2 flex gap-2 items-center">
+                    <Avatar className="w-7 h-7">
+                      <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+                      <AvatarFallback>{user.email && user.email[0]}</AvatarFallback>
+                    </Avatar>
+                    <p>{user.email}</p>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem className="hover:bg-slate-100 py-2 text-center justify-center flex">
                     Log out
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
-
             </div>
           </div>
         </header>

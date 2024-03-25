@@ -6,7 +6,7 @@ interface AdminLayoutProps {
 }
 
 export default function AdminLayout({ children }: AdminLayoutProps) {
-    return <MainLayout>
+    return <MainLayout >
         {children}
     </MainLayout>
 }
