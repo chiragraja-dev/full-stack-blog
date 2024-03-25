@@ -50,16 +50,16 @@ export default async function MainLayout({ children }: MainLayoutProps) {
   }
 
   return (
-    <main className="flex">
+    <main className="flex ">
       <SideNavigation />
       <section className="flex-1 w-8/12 py-1 ">
-        <header className="p-4 border-b">
+        <header className="p-4 border-b mb-6">
           <div className=" container flex justify-between">
             <div></div>
             <div className="flex">
               <DropdownMenu >
-                <DropdownMenuTrigger asChild className="mr-10 hover:bg-slate-800 bg-black text-white">
-                  <Button variant="outline"><PlusIcon className="mr-2" />Create</Button>
+                <DropdownMenuTrigger asChild className="mr-10 ">
+                  <Button variant={'outline'} className=""><PlusIcon className="mr-2" />Create</Button>
                 </DropdownMenuTrigger>
 
                 <DropdownMenuContent className="w-auto flex flex-col divide-y bg-white">
@@ -75,7 +75,7 @@ export default async function MainLayout({ children }: MainLayoutProps) {
                 </DropdownMenuContent>
               </DropdownMenu>
               <DropdownMenu >
-                <DropdownMenuTrigger asChild className="mr-10 hover:bg-slate-800 bg-black text-white">
+                <DropdownMenuTrigger asChild className="mr-10 bg-slate-800 text-white">
                   {/* <Button variant="outline"><PlusIcon className="mr-2" />Create</Button> */}
                   <Avatar className="w-8 h-8">
                     <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
