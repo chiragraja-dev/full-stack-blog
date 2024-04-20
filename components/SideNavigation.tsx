@@ -16,7 +16,7 @@ export default function SideNavigation() {
                     </Link>
                 </li>
                 <li>
-                    <Link href={"/admin/blog"} className="hover:bg-gray-100 rounded-lg px-4 py-3 text-gray-500 hover:text-gray-900 flex gap-2">
+                    <Link href={"/admin/blogs"} className="hover:bg-gray-100 rounded-lg px-4 py-3 text-gray-500 hover:text-gray-900 flex gap-2">
                         <ReaderIcon className="w-6 h-6" />
                         Blog
                     </Link>
